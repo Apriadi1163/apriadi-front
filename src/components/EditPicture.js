@@ -7,8 +7,7 @@ import { Navbar, Nav, Container, Button, Form } from "react-bootstrap";
 function EditPicture() {
   const navigate = useNavigate();
   // const [state, dispatch] = useContext(UserContext)
-  const [categories, setCategories] = useState([]); //Store all category data
-  const [categoryId, setCategoryId] = useState([]); //Save the selected category id
+  const [profiles, setProfiles] = useState([]); //Store all category data
   const [preview, setPreview] = useState(null); //For image preview
   const [form, setForm] = useState({
     image: "",
@@ -17,10 +16,11 @@ function EditPicture() {
     address: "",
   }); //Store product data
 
-  const getCategories = async () => {
+  const getProfiles = async () => {
     try {
       const response = await API.get("/profiles");
-      setCategories(response.data.data);
+      setProfiles(response.data.data);
+      console.log(response.data);
     } catch (error) {
       console.log(error);
     }
@@ -71,7 +71,7 @@ function EditPicture() {
   };
 
   useEffect(() => {
-    getCategories();
+    getProfiles();
   }, []);
 
   return (
